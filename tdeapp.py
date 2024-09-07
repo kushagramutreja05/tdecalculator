@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Function to calculate BMR and TDE
-def calculate_tde(age, weight, height, gender, activity_level):
+def calculate_tdee(age, weight, height, gender, activity_level):
     if gender == 'Male':
         bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
     else:
@@ -10,7 +10,7 @@ def calculate_tde(age, weight, height, gender, activity_level):
     return bmr, tde
 
 # Streamlit form for user input
-st.title("TDE Calculator")
+st.title("TDEE Calculator")
 
 age = st.number_input("Age", min_value=1, max_value=120, step=1)
 weight = st.number_input("Weight (kg)", min_value=1.0, step=0.1)
@@ -25,7 +25,7 @@ activity_level = st.selectbox("Activity Level", [
 ])
 
 # Calculate TDE when the button is pressed
-if st.button("Calculate TDE"):
-    bmr, tde = calculate_tde(age, weight, height, gender, activity_level[1])
+if st.button("Calculate TDEE"):
+    bmr, tde = calculate_tdee(age, weight, height, gender, activity_level[1])
     st.write(f"Basal Metabolic Rate (BMR): {bmr:.2f} kcal")
-    st.write(f"Total Daily Energy Expenditure (TDE): {tde:.2f} kcal")
+    st.write(f"Total Daily Energy Expenditure (TDEE): {tde:.2f} kcal")
