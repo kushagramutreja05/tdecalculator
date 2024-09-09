@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Planner</title>
+    <style>
+        body {
+            background: url('https://modernquests.com/cdn/shop/files/7mm-daily-meal-planner-lemonade-1.jpg?v=1690046563&width=2048');
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 1000px;
+            margin: 20px;
+        }
+        .calorie-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .calorie-container h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .calorie-container input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .calorie-container a {
+            font-size: 0.9rem;
+            color: #67b636;
+            text-decoration: none;
+        }
+
+        .calorie-container a:hover {
+            text-decoration: underline;
+        }
+
+        .meal-container {
+            background-color: rgba(0,0,0,0.7);
+            border-radius: 3%;
+            padding: 20px;
+            box-shadow: 10px 10px 30px -1px rgba(0,0,0,0.75);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 10px;
+            row-gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 30px;
+            justify-items: center;
+        }
+
+        .meal-card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .meal-card {
+            width: 100%;
+            height: 250px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meal-card:hover > img {
+            transform: scale(1.1);
+            transition: transform 0.3s;
+        }
+
+        .meal-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .meal-card button {
+            background-color: #67b636;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+        }
+
+        .meal-card-wrapper:hover .meal-card button {
+            display: block;
+        }
+
+        .meal-text {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            background: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-right-container {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .bottom-right-container h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .bottom-right-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bottom-right-container li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .modal-content button {
+            background-color: #67b636;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .modal-content button:hover {
+            background-color: #4a9a2a;
+        }
+
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        #download-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #67b636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        #download-button:hover {
+            background-color: #4a9a2a;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Calorie input container -->
+        <div class="calorie-container">
+            <h2>Enter Your Daily Calorie Intake</h2>
+            <input type="number" id="calories-input" placeholder="Enter your calories">
+            <a href="https://kushagramutreja05-tdecalculator-tdeapp-qo8weh.streamlit.app" target="_blank">
+                Calculate your calories
+            </a>
+            <button onclick="addCalories()">Submit</button>
+        </div>
+        <div class="meal-container">
+            <div class="meal-card-wrapper">
+                <div class="meal-card" style="background-image: url('images/breakfast.jpg');">
+                    <img src="images/breakfast.jpg" alt="Breakfast">
+                    <button onclick="openModal('breakfast')">Add Meal</button>
+                </div>
+                <div class="meal-text">Breakfast</div>
+            </div>
+            <div class="meal-card-wrapper">
+                <div class="meal-card" style="background-image: url('images/lunch.jpg');">
+                    <img src="images/lunch.jpg" alt="Lunch">
+                    <button onclick="openModal('lunch')">Add Meal</button>
+                </div>
+                <div class="meal-text">Lunch</div>
+            </div>
+            <div class="meal-card-wrapper">
+                <div class="meal-card" style="background-image: url('images/evening-snacks.jpg');">
+                    <img src="images/evening-snacks.jpg" alt="Evening Snacks">
+                    <button onclick="openModal('evening-snacks')">Add Meal</button>
+                </div>
+                <div class="meal-text">Evening Snacks</div>
+            </div>
+            <div class="meal-card-wrapper">
+                <div class="meal-card" style="background-image: url('images/dinner.jpg');">
+                    <img src="images/dinner.jpg" alt="Dinner">
+                    <button onclick="openModal('dinner')">Add Meal</button>
+                </div>
+                <div class="meal-text">Dinner</div>
+            </div>
+        </div>
+
+        <div class="bottom-right-container">
+            <h2>Selected Meals</h2>
+            <ul id="selected-meals"></ul>
+        </div>
+
+        <button id="download-button" onclick="downloadMeals()">Download Meals</button>
+
+        <!-- Modal -->
+        <div class="modal" id="meal-modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modal-title">Select Meal</h2>
+                <select id="meal-options">
+                    <!-- Options will be generated dynamically -->
+                </select>
+                <button onclick="addMeal()">Add Meal</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedMeals = {
+            breakfast: [],
+            lunch: [],
+            'evening-snacks': [],
+            dinner: []
+        };
+
+        const mealOptions = {
+            breakfast: ['Oatmeal', 'Pancakes', 'Eggs', 'Smoothie'],
+            lunch: ['Salad', 'Sandwich', 'Pasta', 'Chicken'],
+            'evening-snacks': ['Fruits', 'Yogurt', 'Nuts'],
+            dinner: ['Soup', 'Steak', 'Fish', 'Rice']
+        };
+
+        function openModal(mealType) {
+            const modal = document.getElementById('meal-modal');
+            const title = document.getElementById('modal-title');
+            const options = document.getElementById('meal-options');
+            options.innerHTML = '';
+
+            mealOptions[mealType].forEach(meal => {
+                const option = document.createElement('option');
+                option.value = meal;
+                option.textContent = meal;
+                options.appendChild(option);
+            });
+
+            title.textContent = `Select ${mealType.charAt(0).toUpperCase() + mealType.slice(1)} Meal`;
+            modal.style.display = 'flex';
+            modal.dataset.mealType = mealType;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('meal-modal');
+            modal.style.display = 'none';
+        }
+
+        function addMeal() {
+            const modal = document.getElementById('meal-modal');
+            const mealType = modal.dataset.mealType;
+            const selectedMeal = document.getElementById('meal-options').value;
+
+            if (selectedMeal) {
+                selectedMeals[mealType].push(selectedMeal);
+                updateSelectedMeals();
+            }
+
+            closeModal();
+        }
+
+        function updateSelectedMeals() {
+            const selectedMealsContainer = document.getElementById('selected-meals');
+            selectedMealsContainer.innerHTML = '';
+
+            Object.keys(selectedMeals).forEach(mealType => {
+                if (selectedMeals[mealType].length > 0) {
+                    const mealTypeTitle = document.createElement('li');
+                    mealTypeTitle.textContent = `${mealType.charAt(0).toUpperCase() + mealType.slice(1)}:`;
+                    selectedMealsContainer.appendChild(mealTypeTitle);
+
+                    selectedMeals[mealType].forEach(meal => {
+                        const mealItem = document.createElement('li');
+                        mealItem.textContent = meal;
+                        selectedMealsContainer.appendChild(mealItem);
+                    });
+                }
+            });
+        }
+
+        function addCalories() {
+            const calories = document.getElementById('calories-input').value;
+            const selectedMealsContainer = document.getElementById('selected-meals');
+            if (!calories || isNaN(calories)) {
+                alert('Please enter a valid calorie count.');
+                return;
+            }
+
+            selectedMealsContainer.innerHTML = ''; // Reset the selected meals container
+
+            Object.keys(selectedMeals).forEach(mealType => {
+                if (selectedMeals[mealType].length > 0) {
+                    const mealTypeTitle = document.createElement('li');
+                    mealTypeTitle.textContent = `${mealType.charAt(0).toUpperCase() + mealType.slice(1)}:`;
+                    selectedMealsContainer.appendChild(mealTypeTitle);
+
+                    selectedMeals[mealType].forEach(meal => {
+                        const mealItem = document.createElement('li');
+                        mealItem.textContent = `${meal} - ${calories} Calories`;
+                        selectedMealsContainer.appendChild(mealItem);
+                    });
+                }
+            });
+        }
+
+        function downloadMeals() {
+            const mealData = JSON.stringify(selectedMeals, null, 2);
+            const blob = new Blob([mealData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'selected_meals.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
