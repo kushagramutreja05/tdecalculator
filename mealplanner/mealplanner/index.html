@@ -366,20 +366,123 @@ function getMealOptions(mealType) {
     let options = '';
     switch (mealType) {
         case 'breakfast':
-            options = `<option value="Breakfast Item 1">Breakfast Item 1</option>
-                       <option value="Breakfast Item 2">Breakfast Item 2</option>`;
+        options = `
+    <optgroup label="Veg Meals">
+        <option value="Oats with Milk and (mixed nuts) Calories:570,Protein:19,Carbs:58.8,Fats:20.8,Quantity: 2 katori (260gm), 20gm nuts">
+            Oats with Milk and (mixed nuts) 2 katori (260gm), 20gm nuts - Calories: 570, Protein: 19g, Carbs: 58.8g, Fats: 20.8g
+        </option>
+        <option value="Spinach wrap with Paneer Calories:475,Protein:24.3,Carbs:37.2,Fats:25.8,Quantity: 170gm">
+            Spinach wrap with Paneer 170gm - Calories: 475, Protein: 24.3g, Carbs: 37.2g, Fats: 25.8g
+        </option>
+        <option value="Quinoa Salad Calories:171,Protein:5.2,Carbs:23,Fats:6.6,Quantity: 200gm">
+            Quinoa Salad 200gm - Calories: 171, Protein: 5.2g, Carbs: 23g, Fats: 6.6g
+        </option>
+        <option value="Sauteed Paneer Calories:294,Protein:17,Carbs:2.2,Fats:24.2,Quantity: 100gm">
+            Sauteed Paneer 100gm - Calories: 294, Protein: 17g, Carbs: 2.2g, Fats: 24.2g
+        </option>
+        <option value="Sattu with Milk Calories:369,Protein:21,Carbs:42,Fats:16,Quantity: 50gm Sattu, 250ml milk">
+            Sattu with Milk 50gm Sattu, 250ml milk - Calories: 369, Protein: 21g, Carbs: 42g, Fats: 16g
+        </option>
+        <option value="Curd Calories:300,Protein:15.5,Carbs:15,Fats:20,Quantity: 500gm">
+            Curd 500gm - Calories: 300, Protein: 15.5g, Carbs: 15g, Fats: 20g
+        </option>
+        <option value="Daliya Calories:285,Protein:7,Carbs:46.8,Fats:8.8,Quantity: 2 katori">
+            Daliya 2 katori - Calories: 285, Protein: 7g, Carbs: 46.8g, Fats: 8.8g
+      <option value="Cheela - Calories:218,Protein:8g,Carbs:21.7g,Fats:11g,Quantity: 2 Piece">
+            Cheela 2,Calories:218,Protein:8g,Carbs:21.7g,Fats:11g</option>
+    </optgroup>
+    <optgroup label="Non-Veg Meals">
+        <option value="Boiled Eggs Calories:387,Protein:31.4,Carbs:2.8,Fats:26.5,Quantity: 5 eggs">
+            Boiled Eggs 5 - Calories: 387, Protein: 31.4g, Carbs: 2.8g, Fats: 26.5g
+        </option>
+        <option value="Boiled Egg Whites Calories:85,Protein:18,Carbs:1,Fats:1,Quantity: 5 egg whites">
+            Boiled Egg Whites 5 - Calories: 85, Protein: 18g, Carbs: 1g, Fats: 1g
+        </option>
+        <option value="Egg White Omelette Calories:191,Protein:18,Carbs:1,Fats:11,Quantity: 5 egg whites">
+            Egg White Omelette 5 egg whites - Calories: 191, Protein: 18g, Carbs: 1g, Fats: 11g
+        </option>
+        <option value="Chicken Salami Calories:234,Protein:9.2,Carbs:10,Fats:17.5,Quantity: 5 slices">
+            Chicken Salami 5 slices - Calories: 234, Protein: 9.2g, Carbs: 10g, Fats: 17.5g
+        </option>
+        <option value="Chicken Sausage Calories:250,Protein:23.3,Carbs:1.7,Fats:16.7,Quantity: 10 sausages">
+            Chicken Sausage 10 - Calories: 250, Protein: 23.3g, Carbs: 1.7g, Fats: 16.7g
+        </option>
+        <option value="Egg Bhurji Calories:438,Protein:19,Carbs:17,Fats:33,Quantity: 4 eggs">
+            Egg Bhurji 4 - Calories: 438, Protein: 19g, Carbs: 17g, Fats: 33g
+        </option>
+        <option value="Egg Omelette Calories:396,Protein:24,Carbs:5.5,Fats:32.5,Quantity: 4 eggs">
+            Egg Omelette 4 - Calories: 396, Protein: 24g, Carbs: 5.5g, Fats: 32.5g
+        </option>
+    </optgroup>`;
+
+           
             break;
         case 'lunch':
-            options = `<option value="Lunch Item 1">Lunch Item 1</option>
-                       <option value="Lunch Item 2">Lunch Item 2</option>`;
+        options = `
+    <optgroup label="Veg Meals">
+        <option value="Rice with Rajma Calories:484,Protein:15.7,Carbs:83.8,Fats:9.7,Quantity: 2 bowl">
+            Rice with Rajma 2 katori - Calories: 484, Protein: 15.7g, Carbs: 83.8g, Fats: 9.7g
+        </option>
+        <option value="Rice Calories:581,Protein:32.2,Carbs:40.6,Fats:42.2,Quantity: 124gm">
+            Rice 124gm - Calories: 581, Protein: 32.2g, Carbs: 40.6g, Fats: 42.2g
+        </option>
+        <option value="Paneer Bhurji Calories:448,Protein:30,Carbs:15,Fats:40,Quantity: 200gm">
+            Paneer Bhurji 200gm - Calories: 448, Protein: 30g, Carbs: 15g, Fats: 40g
+        </option>
+        <option value="Sweet Potato Calories:76,Protein:1.5,Carbs:18,Fats:0,Quantity: 100gm">
+            Sweet Potato 100gm - Calories: 76, Protein: 1.5g, Carbs: 18g, Fats: 0g
+        </option>
+        <option value="Chapati Calories:170,Protein:6.1,Carbs:34.7,Fats:0.9,Quantity: 2 chapatis">
+            Chapati 2 - Calories: 170, Protein: 6.1g, Carbs: 34.7g, Fats: 0.9g
+        </option>
+        <option value="Dal Calories:230,Protein:13.6,Carbs:35.4,Fats:3.9,Quantity: 2 bowl">
+            Dal 2 katori - Calories: 230, Protein: 13.6g, Carbs: 35.4g, Fats: 3.9g
+        </option>
+        <option value="Soya Chunks Calories:200,Protein:30,Carbs:18.5,Fats:0.3,Quantity: 56gm">
+            Soya Chunks 56gm - Calories: 200, Protein: 30g, Carbs: 18.5g, Fats: 0.3g
+        <option value="Chole - Calories:307,Protein:13g,Carbs:42g,Fats:11g,Quantity: 2 bowl">
+            Chole 2 bowl-Calories:307,Protein:13g,Carbs:42g,Fats:11g</option>
+    </optgroup>
+    <optgroup label="Non-Veg Meals">
+        <option value="Brown Rice with Chicken Calories:486,Protein:78.8,Carbs:23,Fats:9,Quantity: 250gm chicken, 124gm brown rice">
+            Brown Rice with Chicken 250gm chicken, 124gm brown rice - Calories: 486, Protein: 78.8g, Carbs: 23g, Fats: 9g
+        </option>
+        <option value="Grilled Fish Calories:278,Protein:40,Carbs:1,Fats:11,Quantity: 240gm">
+            Grilled Fish 240gm - Calories: 278, Protein: 40g, Carbs: 1g, Fats: 11g
+        </option>
+        <option value="Fish Curry Calories:295,Protein:34,Carbs:16,Fats:10,Quantity: 300gm">
+            Fish Curry 300gm - Calories: 295, Protein: 34g, Carbs: 16g, Fats: 10g
+        </option>
+    </optgroup>`;
             break;
         case 'evening-snacks':
             options = `<option value="Evening Snack Item 1">Evening Snack Item 1</option>
                        <option value="Evening Snack Item 2">Evening Snack Item 2</option>`;
             break;
         case 'dinner':
-            options = `<option value="Dinner Item 1">Dinner Item 1</option>
-                       <option value="Dinner Item 2">Dinner Item 2</option>`;
+        options = `
+    <optgroup label="Veg Meals">
+        <option value="Quinoa Stuffed Bell Pepper Calories:495,Protein:20,Carbs:74,Fats:14,Quantity: 2 pieces">
+            Quinoa Stuffed Bell Pepper 2 pieces - Calories: 495, Protein: 20g, Carbs: 74g, Fats: 14g
+        </option>
+        <option value="Paneer Tikka Calories:344,Protein:20,Carbs:3,Fats:28,Quantity: 5 pieces">
+            Paneer Tikka 5 pieces - Calories: 344, Protein: 20g, Carbs: 3g, Fats: 28g
+        </option>
+        <option value="Mushroom with Lentils Calories:248,Protein:15.2,Carbs:37.4,Fats:4.7,Quantity: 1.5 cups">
+            Mushroom with Lentils 1.5 cups - Calories: 248, Protein: 15.2g, Carbs: 37.4g, Fats: 4.7g
+        </option>
+    </optgroup>
+    <optgroup label="Non-Veg Meals">
+        <option value="Chicken Curry Calories:320,Protein:31,Carbs:11,Fats:17,Quantity: 300gm">
+            Chicken Curry 300gm - Calories: 320, Protein: 31g, Carbs: 11g, Fats: 17g
+        </option>
+        <option value="Egg Curry Calories:298,Protein:21.5,Carbs:14,Fats:17,Quantity: 3 eggs">
+            Egg Curry 3 eggs - Calories: 298, Protein: 21.5g, Carbs: 14g, Fats: 17g
+        </option>
+        <option value="Baked Chicken Calories:255,Protein:42.4,Carbs:0.3,Fats:8,Quantity: 200gm">
+            Baked Chicken 200gm - Calories: 255, Protein: 42.4g, Carbs: 0.3g, Fats: 8g
+        </option>
+    </optgroup>`;
             break;
     }
     return options;
